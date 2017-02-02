@@ -15,7 +15,7 @@ namespace vatplan.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Twoja strona opisująca aplikację.";
 
             return View();
         }
