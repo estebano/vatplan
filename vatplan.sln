@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vatplan", "vatplan\vatplan.csproj", "{1AD12DDD-031C-42E2-8C6F-7D0E140984CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vatplan.Tests", "vatplan.Tests\vatplan.Tests.csproj", "{C7C893E3-EB49-4646-9DA2-85461D008BED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanVat", "PlanVat\PlanVat.csproj", "{0732B9C4-4848-4FB6-8183-8BBA799B7156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1AD12DDD-031C-42E2-8C6F-7D0E140984CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AD12DDD-031C-42E2-8C6F-7D0E140984CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AD12DDD-031C-42E2-8C6F-7D0E140984CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AD12DDD-031C-42E2-8C6F-7D0E140984CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7C893E3-EB49-4646-9DA2-85461D008BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7C893E3-EB49-4646-9DA2-85461D008BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7C893E3-EB49-4646-9DA2-85461D008BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7C893E3-EB49-4646-9DA2-85461D008BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0732B9C4-4848-4FB6-8183-8BBA799B7156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0732B9C4-4848-4FB6-8183-8BBA799B7156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0732B9C4-4848-4FB6-8183-8BBA799B7156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0732B9C4-4848-4FB6-8183-8BBA799B7156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
