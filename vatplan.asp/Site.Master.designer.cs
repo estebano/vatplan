@@ -10,7 +10,7 @@
 namespace vatplan.asp {
     
     
-    public partial class Site1 {
+    public partial class Site {
         
         /// <summary>
         /// head control.

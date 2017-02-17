@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlanVat.Domain.DB;
+using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,18 @@ namespace vatplan.asp
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IQueryable<Products> productsGrid_GetData()
+        {
+            var q = from p in new VatplanEntities().Products select p;
+            return q;
         }
     }
 }
