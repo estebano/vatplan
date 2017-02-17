@@ -201,37 +201,14 @@
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DB\Contractors.cs">
-      <DependentUpon>VatplanModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\InvoiceItems.cs">
-      <DependentUpon>VatplanModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Invoices.cs">
-      <DependentUpon>VatplanModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Products.cs">
-      <DependentUpon>VatplanModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\VatplanModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VatplanModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\VatplanModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VatplanModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\VatplanModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VatplanModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Managers\Addition.cs" />
+    <Compile Include="Managers\DoublesManager.cs" />
+    <Compile Include="Managers\ICalculations.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -243,29 +220,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DB\VatplanModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VatplanModel.edmx</DependentUpon>
-      <LastGenOutput>VatplanModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DB\VatplanModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VatplanModel.edmx</DependentUpon>
-      <LastGenOutput>VatplanModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DB\VatplanModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VatplanModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DB\VatplanModel.edmx.diagram">
-      <DependentUpon>VatplanModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -278,7 +238,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -327,6 +289,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlanVat.Domain\PlanVat.Domain.csproj">
+      <Project>{33cb8a06-aafd-4e28-9a55-b373d2d5102f}</Project>
+      <Name>PlanVat.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

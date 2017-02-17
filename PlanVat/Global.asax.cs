@@ -16,11 +16,14 @@ namespace PlanVat
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            DependencyResolver.SetResolver(new NinjectDependencyResolver());
+            //DependencyResolver.SetResolver(new NinjectDependencyResolver());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ControllerBuilder.Current.SetControllerFactory(
+                new NinjectControllerFactory());
         }
     }
 }

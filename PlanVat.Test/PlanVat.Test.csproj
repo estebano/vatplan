@@ -62,7 +62,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlanVat.Domain\PlanVat.Domain.csproj">
+      <Project>{33cb8a06-aafd-4e28-9a55-b373d2d5102f}</Project>
+      <Name>PlanVat.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlanVat\PlanVat.csproj">
+      <Project>{0732b9c4-4848-4fb6-8183-8bba799b7156}</Project>
+      <Name>PlanVat</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

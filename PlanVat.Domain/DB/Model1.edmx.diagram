@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e2b6bf5c56949848cfdfba10b84d5ec" Name="Diagram1">
+      <Diagram DiagramId="dbd8b57b161f4241a34d84c4fd1058dc" Name="Diagram1">
         <EntityTypeShape EntityType="VatplanModel.Contractors" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="VatplanModel.InvoiceItems" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VatplanModel.Invoices" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />

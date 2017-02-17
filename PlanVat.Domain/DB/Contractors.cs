@@ -7,26 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlanVat.DB
+namespace PlanVat.Domain.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Invoices
+    public partial class Contractors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Invoices()
+        public Contractors()
         {
-            this.InvoiceItems = new HashSet<InvoiceItems>();
+            this.Invoices = new HashSet<Invoices>();
         }
     
         public int Id { get; set; }
-        public System.DateTime IssueDate { get; set; }
-        public System.DateTime SaleDate { get; set; }
-        public int ContractorId { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string BuildingNumber { get; set; }
+        public string ApartmentNumber { get; set; }
+        public string NIP { get; set; }
+        public string Regon { get; set; }
     
-        public virtual Contractors Contractors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
+        public virtual ICollection<Invoices> Invoices { get; set; }
     }
 }

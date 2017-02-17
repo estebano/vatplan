@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlanVat.DB
+namespace PlanVat.Domain.DB
 {
     using System;
     using System.Collections.Generic;
