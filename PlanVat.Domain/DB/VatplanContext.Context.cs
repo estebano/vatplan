@@ -29,5 +29,7 @@ namespace PlanVat.Domain.DB
         public virtual DbSet<InvoiceItems> InvoiceItems { get; set; }
         public virtual DbSet<Invoices> Invoices { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<UnitsOfMeasure> UnitsOfMeasure { get; set; }
+        public virtual DbSet<VatRates> VatRates { get; set; }
     }
 }

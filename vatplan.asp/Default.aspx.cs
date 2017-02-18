@@ -24,7 +24,9 @@ namespace vatplan.asp
         //     string sortByExpression
         public IQueryable<Products> productsGrid_GetData()
         {
-            var q = from p in new VatplanEntities().Products select p;
+            var q = from p in new VatplanEntities().Products 
+                    orderby p.Name
+                    select p;
             return q;
         }
     }

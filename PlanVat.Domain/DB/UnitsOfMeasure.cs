@@ -12,25 +12,18 @@ namespace PlanVat.Domain.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Products
+    public partial class UnitsOfMeasure
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
+        public UnitsOfMeasure()
         {
-            this.InvoiceItems = new HashSet<InvoiceItems>();
+            this.Products = new HashSet<Products>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string PKWiU { get; set; }
-        public decimal Price { get; set; }
-        public int UnitsId { get; set; }
-        public int VatRateId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
-        public virtual UnitsOfMeasure UnitsOfMeasure { get; set; }
-        public virtual VatRates VatRates { get; set; }
+        public virtual ICollection<Products> Products { get; set; }
     }
 }

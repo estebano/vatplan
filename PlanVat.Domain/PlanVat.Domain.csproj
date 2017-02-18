@@ -53,42 +53,48 @@
   <ItemGroup>
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="DB\Contractors.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>VatplanContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\InvoiceItems.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>VatplanContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Invoices.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>VatplanContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Products.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>VatplanContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UnitsOfMeasure.cs">
+      <DependentUpon>VatplanContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VatplanContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VatplanContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VatplanContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VatplanContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VatplanContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VatplanContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VatRates.cs">
+      <DependentUpon>VatplanContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DB\Model1.edmx">
+    <EntityDeploy Include="DB\VatplanContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>VatplanContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DB\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="DB\VatplanContext.edmx.diagram">
+      <DependentUpon>VatplanContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -96,19 +102,19 @@
     <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DB\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="DB\VatplanContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VatplanContext.edmx</DependentUpon>
+      <LastGenOutput>VatplanContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB\VatplanContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VatplanContext.edmx</DependentUpon>
+      <LastGenOutput>VatplanContext.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
