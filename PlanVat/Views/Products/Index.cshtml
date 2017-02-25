@@ -1,0 +1,36 @@
+﻿@using PlanVat.Domain.DB
+@model System.Collections.Generic.IEnumerable<Products>
+
+@{
+    ViewBag.Title = "Produkty";
+}
+
+<h2>Lista produktów</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Nazwa</td>
+            <td>Opis</td>
+            <td>PKWiU</td>
+            <td>J.m.</td>
+            <td>Cena netto</td>
+            <td>Stawka Vat</td>
+            <td>Cena brutto</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produkt in Model)
+        {
+            <tr>
+                <td>@produkt.Name</td>
+                <td>@produkt.Description</td>
+                <td>@produkt.PKWiU</td>
+                <td>@produkt.UnitsOfMeasure.Name</td>
+                <td>@produkt.Price</td>
+                <td>@produkt.VatRates.Name</td>
+                <td>@(produkt.Price * produkt.VatRates.Value)</td>
+            </tr>
+        }
+    </tbody>
+</table>
