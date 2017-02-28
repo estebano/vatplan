@@ -25,7 +25,7 @@ namespace PlanVat.Domain.DB
         public System.DateTime SaleDate { get; set; }
         public int ContractorId { get; set; }
     
-        public virtual Contractors Contractors { get; set; }
+        public virtual ContractorsInInvoices ContractorsInInvoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
     }

@@ -12,14 +12,20 @@ namespace PlanVat.Domain.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class InvoiceItems
+    public partial class ContractorsInInvoices
     {
         public int Id { get; set; }
-        public int InvoiceId { get; set; }
-        public int ProductId { get; set; }
-        public decimal Quantity { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public int Postal { get; set; }
+        public string BuildingNumber { get; set; }
+        public string ApartmentNumber { get; set; }
+        public long NIP { get; set; }
+        public Nullable<int> Regon { get; set; }
+        public int ContractorId { get; set; }
     
+        public virtual Contractors Contractors { get; set; }
         public virtual Invoices Invoices { get; set; }
-        public virtual ProductsInInvoices ProductsInInvoices { get; set; }
     }
 }

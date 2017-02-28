@@ -12,25 +12,25 @@ namespace PlanVat.Domain.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Contractors
+    public partial class ProductsInInvoices
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Contractors()
+        public ProductsInInvoices()
         {
-            this.ContractorsInInvoices = new HashSet<ContractorsInInvoices>();
+            this.InvoiceItems = new HashSet<InvoiceItems>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string City { get; set; }
-        public int Postal { get; set; }
-        public string Street { get; set; }
-        public string BuildingNumber { get; set; }
-        public string ApartmentNumber { get; set; }
-        public long NIP { get; set; }
-        public Nullable<int> Regon { get; set; }
+        public string Description { get; set; }
+        public string PKWiU { get; set; }
+        public int UnitsId { get; set; }
+        public decimal Price { get; set; }
+        public int VatRateId { get; set; }
+        public int ProductId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContractorsInInvoices> ContractorsInInvoices { get; set; }
+        public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
+        public virtual Products Products { get; set; }
     }
 }

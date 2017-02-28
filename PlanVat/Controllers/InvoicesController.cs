@@ -2,37 +2,39 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PlanVat.Controllers
 {
-    public class ContractorsController : Controller
+    public class InvoicesController : Controller
     {
-        // GET: Contractors
+        // GET: Invoices
         public ActionResult Index()
         {
-            using(var context = new VatplanEntities())
+            using (var context = new VatplanEntities())
             {
-                var contractors = from c in context.Contractors
-                                  select c;
-                return View(contractors.ToList());
+                var invoices = from i in context.Invoices
+                               .Include(x => x.InvoiceItems.Select(c => c.ProductsInInvoices))
+                               select i;
+                return View();
             }
         }
 
-        // GET: Contractors/Details/5
+        // GET: Invoices/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Contractors/Create
+        // GET: Invoices/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Contractors/Create
+        // POST: Invoices/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -48,13 +50,13 @@ namespace PlanVat.Controllers
             }
         }
 
-        // GET: Contractors/Edit/5
+        // GET: Invoices/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Contractors/Edit/5
+        // POST: Invoices/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -70,13 +72,13 @@ namespace PlanVat.Controllers
             }
         }
 
-        // GET: Contractors/Delete/5
+        // GET: Invoices/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Contractors/Delete/5
+        // POST: Invoices/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

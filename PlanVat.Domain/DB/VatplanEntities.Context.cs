@@ -26,9 +26,11 @@ namespace PlanVat.Domain.DB
         }
     
         public virtual DbSet<Contractors> Contractors { get; set; }
+        public virtual DbSet<ContractorsInInvoices> ContractorsInInvoices { get; set; }
         public virtual DbSet<InvoiceItems> InvoiceItems { get; set; }
         public virtual DbSet<Invoices> Invoices { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<ProductsInInvoices> ProductsInInvoices { get; set; }
         public virtual DbSet<UnitsOfMeasure> UnitsOfMeasure { get; set; }
         public virtual DbSet<VatRates> VatRates { get; set; }
     }

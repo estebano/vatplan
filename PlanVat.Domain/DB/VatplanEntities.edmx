@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VatplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contractors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Postal" Type="int" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="BuildingNumber" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="ApartmentNumber" Type="nvarchar" MaxLength="6" />
+          <Property Name="NIP" Type="bigint" Nullable="false" />
+          <Property Name="Regon" Type="int" />
+        </EntityType>
+        <EntityType Name="ContractorsInInvoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Postal" Type="int" Nullable="false" />
+          <Property Name="BuildingNumber" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="ApartmentNumber" Type="nvarchar" MaxLength="6" />
+          <Property Name="NIP" Type="bigint" Nullable="false" />
+          <Property Name="Regon" Type="int" />
+          <Property Name="ContractorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IssueDate" Type="date" Nullable="false" />
+          <Property Name="SaleDate" Type="date" Nullable="false" />
+          <Property Name="ContractorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="80" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="160" />
+          <Property Name="PKWiU" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="UnitsId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="VatRateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductsInInvoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="160" />
+          <Property Name="PKWiU" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="UnitsId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="VatRateId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitsOfMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VatRates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ContractorsInInvoices_Contractors1">
+          <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+          <End Role="ContractorsInInvoices" Type="Self.ContractorsInInvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContractorsInInvoices">
+              <PropertyRef Name="ContractorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractorsInInvoices_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="ContractorsInInvoices" Type="Self.ContractorsInInvoices" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContractorsInInvoices">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_ProductsInInvoices">
+          <End Role="ProductsInInvoices" Type="Self.ProductsInInvoices" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsInInvoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_UnitsOfMeasure">
+          <End Role="UnitsOfMeasure" Type="Self.UnitsOfMeasure" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitsOfMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UnitsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_VatRates">
+          <End Role="VatRates" Type="Self.VatRates" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VatRates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="VatRateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsInInvoices_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsInInvoices" Type="Self.ProductsInInvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsInInvoices">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VatplanModelStoreContainer">
+          <EntitySet Name="Contractors" EntityType="Self.Contractors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContractorsInInvoices" EntityType="Self.ContractorsInInvoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsInInvoices" EntityType="Self.ProductsInInvoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitsOfMeasure" EntityType="Self.UnitsOfMeasure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VatRates" EntityType="Self.VatRates" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ContractorsInInvoices_Contractors1" Association="Self.FK_ContractorsInInvoices_Contractors1">
+            <End Role="Contractors" EntitySet="Contractors" />
+            <End Role="ContractorsInInvoices" EntitySet="ContractorsInInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractorsInInvoices_Invoices" Association="Self.FK_ContractorsInInvoices_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="ContractorsInInvoices" EntitySet="ContractorsInInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Invoices" Association="Self.FK_InvoiceItems_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_ProductsInInvoices" Association="Self.FK_InvoiceItems_ProductsInInvoices">
+            <End Role="ProductsInInvoices" EntitySet="ProductsInInvoices" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_UnitsOfMeasure" Association="Self.FK_Products_UnitsOfMeasure">
+            <End Role="UnitsOfMeasure" EntitySet="UnitsOfMeasure" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_VatRates" Association="Self.FK_Products_VatRates">
+            <End Role="VatRates" EntitySet="VatRates" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsInInvoices_Products" Association="Self.FK_ProductsInInvoices_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsInInvoices" EntitySet="ProductsInInvoices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VatplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contractors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postal" Type="Int32" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BuildingNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApartmentNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="NIP" Type="Int64" Nullable="false" />
+          <Property Name="Regon" Type="Int32" />
+          <NavigationProperty Name="ContractorsInInvoices" Relationship="Self.FK_ContractorsInInvoices_Contractors1" FromRole="Contractors" ToRole="ContractorsInInvoices" />
+        </EntityType>
+        <EntityType Name="ContractorsInInvoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postal" Type="Int32" Nullable="false" />
+          <Property Name="BuildingNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApartmentNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="NIP" Type="Int64" Nullable="false" />
+          <Property Name="Regon" Type="Int32" />
+          <Property Name="ContractorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contractors" Relationship="Self.FK_ContractorsInInvoices_Contractors1" FromRole="ContractorsInInvoices" ToRole="Contractors" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_ContractorsInInvoices_Invoices" FromRole="ContractorsInInvoices" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_InvoiceItems_Invoices" FromRole="InvoiceItems" ToRole="Invoices" />
+          <NavigationProperty Name="ProductsInInvoices" Relationship="Self.FK_InvoiceItems_ProductsInInvoices" FromRole="InvoiceItems" ToRole="ProductsInInvoices" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ContractorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ContractorsInInvoices" Relationship="Self.FK_ContractorsInInvoices_Invoices" FromRole="Invoices" ToRole="ContractorsInInvoices" />
+          <NavigationProperty Name="InvoiceItems" Relationship="Self.FK_InvoiceItems_Invoices" FromRole="Invoices" ToRole="InvoiceItems" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="PKWiU" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitsId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="VatRateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UnitsOfMeasure" Relationship="Self.FK_Products_UnitsOfMeasure" FromRole="Products" ToRole="UnitsOfMeasure" />
+          <NavigationProperty Name="VatRates" Relationship="Self.FK_Products_VatRates" FromRole="Products" ToRole="VatRates" />
+          <NavigationProperty Name="ProductsInInvoices" Relationship="Self.FK_ProductsInInvoices_Products" FromRole="Products" ToRole="ProductsInInvoices" />
+        </EntityType>
+        <EntityType Name="ProductsInInvoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="PKWiU" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitsId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="VatRateId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InvoiceItems" Relationship="Self.FK_InvoiceItems_ProductsInInvoices" FromRole="ProductsInInvoices" ToRole="InvoiceItems" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductsInInvoices_Products" FromRole="ProductsInInvoices" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="UnitsOfMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_UnitsOfMeasure" FromRole="UnitsOfMeasure" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="VatRates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_VatRates" FromRole="VatRates" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_ContractorsInInvoices_Contractors1">
+          <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+          <End Role="ContractorsInInvoices" Type="Self.ContractorsInInvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContractorsInInvoices">
+              <PropertyRef Name="ContractorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractorsInInvoices_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="ContractorsInInvoices" Type="Self.ContractorsInInvoices" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContractorsInInvoices">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_ProductsInInvoices">
+          <End Role="ProductsInInvoices" Type="Self.ProductsInInvoices" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsInInvoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_UnitsOfMeasure">
+          <End Role="UnitsOfMeasure" Type="Self.UnitsOfMeasure" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitsOfMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UnitsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_VatRates">
+          <End Role="VatRates" Type="Self.VatRates" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VatRates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="VatRateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsInInvoices_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsInInvoices" Type="Self.ProductsInInvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsInInvoices">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VatplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contractors" EntityType="Self.Contractors" />
+          <EntitySet Name="ContractorsInInvoices" EntityType="Self.ContractorsInInvoices" />
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItems" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductsInInvoices" EntityType="Self.ProductsInInvoices" />
+          <EntitySet Name="UnitsOfMeasure" EntityType="Self.UnitsOfMeasure" />
+          <EntitySet Name="VatRates" EntityType="Self.VatRates" />
+          <AssociationSet Name="FK_ContractorsInInvoices_Contractors1" Association="Self.FK_ContractorsInInvoices_Contractors1">
+            <End Role="Contractors" EntitySet="Contractors" />
+            <End Role="ContractorsInInvoices" EntitySet="ContractorsInInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractorsInInvoices_Invoices" Association="Self.FK_ContractorsInInvoices_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="ContractorsInInvoices" EntitySet="ContractorsInInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Invoices" Association="Self.FK_InvoiceItems_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_ProductsInInvoices" Association="Self.FK_InvoiceItems_ProductsInInvoices">
+            <End Role="ProductsInInvoices" EntitySet="ProductsInInvoices" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_UnitsOfMeasure" Association="Self.FK_Products_UnitsOfMeasure">
+            <End Role="UnitsOfMeasure" EntitySet="UnitsOfMeasure" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_VatRates" Association="Self.FK_Products_VatRates">
+            <End Role="VatRates" EntitySet="VatRates" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsInInvoices_Products" Association="Self.FK_ProductsInInvoices_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsInInvoices" EntitySet="ProductsInInvoices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VatplanModelStoreContainer" CdmEntityContainer="VatplanEntities">
+          <EntitySetMapping Name="Contractors">
+            <EntityTypeMapping TypeName="VatplanModel.Contractors">
+              <MappingFragment StoreEntitySet="Contractors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Postal" ColumnName="Postal" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
+                <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="Regon" ColumnName="Regon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractorsInInvoices">
+            <EntityTypeMapping TypeName="VatplanModel.ContractorsInInvoices">
+              <MappingFragment StoreEntitySet="ContractorsInInvoices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Postal" ColumnName="Postal" />
+                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
+                <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="Regon" ColumnName="Regon" />
+                <ScalarProperty Name="ContractorId" ColumnName="ContractorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="VatplanModel.InvoiceItems">
+              <MappingFragment StoreEntitySet="InvoiceItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="VatplanModel.Invoices">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="ContractorId" ColumnName="ContractorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="VatplanModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PKWiU" ColumnName="PKWiU" />
+                <ScalarProperty Name="UnitsId" ColumnName="UnitsId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="VatRateId" ColumnName="VatRateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsInInvoices">
+            <EntityTypeMapping TypeName="VatplanModel.ProductsInInvoices">
+              <MappingFragment StoreEntitySet="ProductsInInvoices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PKWiU" ColumnName="PKWiU" />
+                <ScalarProperty Name="UnitsId" ColumnName="UnitsId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="VatRateId" ColumnName="VatRateId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitsOfMeasure">
+            <EntityTypeMapping TypeName="VatplanModel.UnitsOfMeasure">
+              <MappingFragment StoreEntitySet="UnitsOfMeasure">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VatRates">
+            <EntityTypeMapping TypeName="VatplanModel.VatRates">
+              <MappingFragment StoreEntitySet="VatRates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -17,7 +17,7 @@ namespace PlanVat.Domain.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Products()
         {
-            this.InvoiceItems = new HashSet<InvoiceItems>();
+            this.ProductsInInvoices = new HashSet<ProductsInInvoices>();
         }
     
         public int Id { get; set; }
@@ -28,9 +28,9 @@ namespace PlanVat.Domain.DB
         public decimal Price { get; set; }
         public int VatRateId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
         public virtual UnitsOfMeasure UnitsOfMeasure { get; set; }
         public virtual VatRates VatRates { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductsInInvoices> ProductsInInvoices { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using PlanVat.Domain.DB
-@model System.Collections.Generic.IEnumerable<Products>
+@model IEnumerable<Products>
 
 @{
     ViewBag.Title = "Produkty";
@@ -28,8 +28,10 @@
                 <td>@produkt.PKWiU</td>
                 <td>@produkt.UnitsOfMeasure.Name</td>
                 <td>@produkt.Price</td>
-                <td>@produkt.VatRates.Name</td>
-                <td>@(produkt.Price * produkt.VatRates.Value)</td>
+                <td>@(produkt.VatRates.Name)%</td>
+                <td>@(produkt.Price * (1m + produkt.VatRates.Value / 100m))</td>
+                <td>@Html.ActionLink("Edytuj", "Edit", new { id = produkt.Id })</td>
+                <td>@Html.ActionLink("Usuń", "Delete", new { id = produkt.Id })</td>
             </tr>
         }
     </tbody>

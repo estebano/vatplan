@@ -53,48 +53,54 @@
   <ItemGroup>
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="DB\Contractors.cs">
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ContractorsInInvoices.cs">
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\InvoiceItems.cs">
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Invoices.cs">
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Products.cs">
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ProductsInInvoices.cs">
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\UnitsOfMeasure.cs">
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\VatplanContext.Context.cs">
+    <Compile Include="DB\VatplanEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VatplanContext.Context.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\VatplanContext.cs">
+    <Compile Include="DB\VatplanEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\VatplanContext.Designer.cs">
+    <Compile Include="DB\VatplanEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VatplanContext.edmx</DependentUpon>
+      <DependentUpon>VatplanEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="DB\VatRates.cs">
-      <DependentUpon>VatplanContext.tt</DependentUpon>
+      <DependentUpon>VatplanEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DB\VatplanContext.edmx">
+    <EntityDeploy Include="DB\VatplanEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VatplanContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>VatplanEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DB\VatplanContext.edmx.diagram">
-      <DependentUpon>VatplanContext.edmx</DependentUpon>
+    <None Include="DB\VatplanEntities.edmx.diagram">
+      <DependentUpon>VatplanEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -105,15 +111,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\VatplanContext.Context.tt">
+    <Content Include="DB\VatplanEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VatplanContext.edmx</DependentUpon>
-      <LastGenOutput>VatplanContext.Context.cs</LastGenOutput>
+      <DependentUpon>VatplanEntities.edmx</DependentUpon>
+      <LastGenOutput>VatplanEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DB\VatplanContext.tt">
+    <Content Include="DB\VatplanEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VatplanContext.edmx</DependentUpon>
-      <LastGenOutput>VatplanContext.cs</LastGenOutput>
+      <DependentUpon>VatplanEntities.edmx</DependentUpon>
+      <LastGenOutput>VatplanEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

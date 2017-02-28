@@ -1,0 +1,39 @@
+﻿@using PlanVat.Domain.DB
+@using PlanVat.Formatters
+@model IEnumerable<Contractors>
+@{
+    ViewBag.Title = "Kontrachenci";
+}
+
+<h2>Lista kontrachentów</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Nazwa</td>
+            <td>Miasto</td>
+            <td>Kod pocztowy</td>
+            <td>Ulica</td>
+            <td>Numer budynku</td>
+            <td>Numer lokalu</td>
+            <td>NIP</td>
+            <td>Regon</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contractor in Model)
+        {
+            <tr>
+                <td>@contractor.Name</td>
+                <td>@contractor.City</td>
+                <td>@Postal.PolishFormat(contractor.Postal)</td>
+                <td>@contractor.Street</td>
+                <td>@contractor.BuildingNumber</td>
+                <td>@contractor.ApartmentNumber</td>
+                <td>@NIP.OldFashionFormat(contractor.NIP)</td>
+                <td>@contractor.Regon</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
