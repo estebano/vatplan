@@ -32,5 +32,7 @@ namespace PlanVat.Domain.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
         public virtual Products Products { get; set; }
+        public virtual UnitsOfMeasure UnitsOfMeasure { get; set; }
+        public virtual VatRates VatRates { get; set; }
     }
 }

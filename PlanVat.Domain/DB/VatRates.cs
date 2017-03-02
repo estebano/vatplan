@@ -18,6 +18,7 @@ namespace PlanVat.Domain.DB
         public VatRates()
         {
             this.Products = new HashSet<Products>();
+            this.ProductsInInvoices = new HashSet<ProductsInInvoices>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace PlanVat.Domain.DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductsInInvoices> ProductsInInvoices { get; set; }
     }
 }

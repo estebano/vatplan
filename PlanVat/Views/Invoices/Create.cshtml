@@ -1,0 +1,102 @@
+﻿@model PlanVat.Domain.DB.Invoices
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Invoices</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IssueDate, "Data wystawienia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IssueDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.IssueDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SaleDate, "Data sprzedaży", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SaleDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.SaleDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContractorId, "Partner", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ContractorId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ContractorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nazwa produktu</th>
+                    <th>PKWiU</th>
+                    <th>J.m. </th>
+                    <th>Ilość</th>
+                    <th>Cena netto</th>
+                    <th>Wartość</th>
+                    <th>Stawka Vat</th>
+                    <th>Kwota podatku</th>
+                    <th>Wartość brutto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in Model.InvoiceItems)
+                {
+                    var product = row.ProductsInInvoices;
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.PKWiU</td>
+                        <td>@product.UnitsOfMeasure.Name</td>
+                        <td>@row.Quantity</td>
+                        <td>@product.Price</td>
+                        <td>@(product.Price * row.Quantity)</td>
+                        <td>@(product.VatRates.Name)%</td>
+                        <td>@(product.Price * product.VatRates.Value / 100m)</td>
+                        <td>@(product.Price * row.Quantity * product.VatRates.Value / 100m)</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3">
+                        @Html.DropDownList("NewProductName", null, htmlAttributes: new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @Html.Editor("NewProductQuantity")
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>
+}

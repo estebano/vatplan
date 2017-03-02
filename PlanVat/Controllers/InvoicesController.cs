@@ -16,9 +16,12 @@ namespace PlanVat.Controllers
             using (var context = new VatplanEntities())
             {
                 var invoices = from i in context.Invoices
-                               .Include(x => x.InvoiceItems.Select(c => c.ProductsInInvoices))
+                               .Include("InvoiceItems")
+                               .Include("InvoiceItems.ProductsInInvoices")
+                               .Include("InvoiceItems.ProductsInInvoices.VatRates")
+                               .Include("InvoiceItems.ProductsInInvoices.UnitsOfMeasure")
                                select i;
-                return View();
+                return View(invoices.ToList());
             }
         }
 
@@ -31,7 +34,11 @@ namespace PlanVat.Controllers
         // GET: Invoices/Create
         public ActionResult Create()
         {
-            return View();
+            using (var context = new VatplanEntities())
+            {
+                ViewData["ContractorId"] = new SelectList(context.Contractors.ToList(), "Id", "Name");
+                return View();
+            }
         }
 
         // POST: Invoices/Create
