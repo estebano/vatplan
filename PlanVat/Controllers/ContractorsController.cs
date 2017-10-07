@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PlanVat.Infrastructure;
 
 namespace PlanVat.Controllers
 {
-    public class ContractorsController : Controller
+    public class ContractorsController : LoggingController
     {
         // GET: Contractors
         public ActionResult Index()
         {
-            using(var context = new VatplanEntities())
+            using (var context = new VatplanEntities())
             {
                 var contractors = from c in context.Contractors
                                   select c;
@@ -34,18 +35,34 @@ namespace PlanVat.Controllers
 
         // POST: Contractors/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Contractors contractor)
         {
-            try
+            if (contractor == null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                throw new ArgumentNullException(nameof(contractor));
             }
-            catch
+
+            Log.Debug("Test debug message");
+
+            using (var context = new VatplanEntities())
             {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        // TODO: Add insert logic here
+                        context.Contractors.Add(contractor);
+                        context.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug("Saving model error", ex);
+                }
                 return View();
             }
+
         }
 
         // GET: Contractors/Edit/5

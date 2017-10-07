@@ -37,7 +37,9 @@ namespace PlanVat.Controllers
             using (var context = new VatplanEntities())
             {
                 ViewData["ContractorId"] = new SelectList(context.Contractors.ToList(), "Id", "Name");
-                return View();
+                ViewData["NewProductName"] = new SelectList(context.Products.ToList(), "Id", "Name");
+                var invoice = new Invoices();
+                return View(invoice);
             }
         }
 

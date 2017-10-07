@@ -8,6 +8,6 @@ namespace PlanVat.Models
 {
     public class InvoiceLine
     {
-        public Products   MyProperty { get; set; }
+
     }
 }
