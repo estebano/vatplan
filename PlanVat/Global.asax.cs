@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FluentValidation.Mvc;
 
 namespace PlanVat
 {
@@ -24,6 +25,8 @@ namespace PlanVat
 
             //ControllerBuilder.Current.SetControllerFactory(
             //    new NinjectControllerFactory());
+
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }

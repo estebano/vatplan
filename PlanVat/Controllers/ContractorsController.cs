@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PlanVat.Infrastructure;
+using PlanVat.Models;
 
 namespace PlanVat.Controllers
 {
@@ -35,7 +36,7 @@ namespace PlanVat.Controllers
 
         // POST: Contractors/Create
         [HttpPost]
-        public ActionResult Create(Contractors contractor)
+        public ActionResult Create(ContractorViewModel contractor)
         {
             if (contractor == null)
             {
@@ -51,7 +52,7 @@ namespace PlanVat.Controllers
                     if (ModelState.IsValid)
                     {
                         // TODO: Add insert logic here
-                        context.Contractors.Add(contractor);
+                        context.Contractors.Add(contractor.ToDTO());
                         context.SaveChanges();
                         return RedirectToAction("Index");
                     }
